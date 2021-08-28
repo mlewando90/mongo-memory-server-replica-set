@@ -8,15 +8,24 @@ let client;
 let dbName;
 
 export async function connect(url = DB_URL, databaseName = DB_NAME) {
-  client = new MongoClient(url, { useUnifiedTopology: true });
+  client = new MongoClient(url, {
+    poolSize: parseInt(process.env.MONGO_POOL_SIZE ?? "5", 10),
+    useUnifiedTopology: true,
+  });
   dbName = databaseName;
   await client.connect();
 }
 
 export async function disconnect() {
-  await client?.close();
+  if (client?.isConnected()) {
+    await client.close();
+  }
 }
 
 export function getDbConnection() {
-  return client?.db(dbName);
+  if (client?.isConnected()) {
+    return client.db(dbName);
+  } else {
+    throw new Error("Database not connected");
+  }
 }
