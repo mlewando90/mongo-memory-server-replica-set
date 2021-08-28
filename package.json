@@ -1,0 +1,36 @@
+{
+  "name": "@mlewando/mongo-memory-server-replica-set",
+  "version": "1.0.0",
+  "description": "Example to show mongo memory server fail with replica set (issue #535)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mlewando90/mongo-memory-server-replica-set.git"
+  },
+  "keywords": [
+    "mongodb-memory-server",
+    "replicaSet",
+    "notMaster"
+  ],
+  "author": "Mateusz Lewandowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlewando90/mongo-memory-server-replica-set/issues"
+  },
+  "homepage": "https://github.com/mlewando90/mongo-memory-server-replica-set#readme",
+  "devDependencies": {
+    "jest": "^27.1.0",
+    "mongodb-memory-server": "^7.4.0-beta.4"
+  },
+  "dependencies": {
+    "mongodb": "^4.1.1"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "4.4.4"
+    }
+  }
+}
