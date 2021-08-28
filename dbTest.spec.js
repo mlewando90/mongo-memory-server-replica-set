@@ -1,9 +1,9 @@
-import { getDbConnection } from "./db-utils";
+import { getDbConnection } from "./db-utils.js";
 import {
   clearDatabase,
   setupTestDatabase,
   tearDownTestDatabase,
-} from "./test/test-db";
+} from "./test/test-db.js";
 
 beforeAll(() => setupTestDatabase());
 afterAll(() => tearDownTestDatabase());
@@ -14,8 +14,10 @@ it("should insert some data", async () => {
     .collection("test")
     .insertMany([{ name: "itemA" }, { name: "itemB" }]);
 
-  await expect(getDbConnection().collection("test").find({})).resolves.toEqual([
-    { _id: expect.any(), name: "itemA" },
-    { _id: expect.any(), name: "itemb" },
+  await expect(
+    getDbConnection().collection("test").find({}).toArray()
+  ).resolves.toEqual([
+    { _id: expect.anything(), name: "itemA" },
+    { _id: expect.anything(), name: "itemB" },
   ]);
 });

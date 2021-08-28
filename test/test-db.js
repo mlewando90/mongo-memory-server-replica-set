@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { connect, disconnect, getDbConnection } from "../db-utils";
+import { connect, disconnect, getDbConnection } from "../db-utils.js";
 
 export async function setupTestDatabase() {
   await connect(process.env.MONGO_URL, "test-db-" + uuid());
